@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>강원대학교 공예디자인전공 샤먼 동문전시 참가자 설문지</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --paper: #f5f0e8;
+      --accent: #c0392b;
+      --gold: #d4a017;
+      --muted: #7a7060;
+      --border: #d0c8b8;
+      --white: #ffffff;
+      --success: #27ae60;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Noto Sans KR', sans-serif;
+      min-height: 100vh;
+      background-image:
+        radial-gradient(ellipse at 10% 10%, rgba(192,57,43,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 90%, rgba(212,160,23,0.04) 0%, transparent 50%);
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--ink);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid var(--accent);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.3px;
+      line-height: 1.4;
+    }
+    .logo small {
+      font-size: 11px;
+      font-weight: 400;
+      color: #aaa;
+      letter-spacing: 0.2px;
+    }
+    .logo span { color: var(--gold); }
+    .header-tag {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 70px 20px 40px;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, transparent, var(--border));
+    }
+    .hero-label {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(28px, 5vw, 46px);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ── PROGRESS ── */
+    .progress-wrap {
+      max-width: 680px;
+      margin: 30px auto 0;
+      padding: 0 20px;
+    }
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .progress-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      border-radius: 2px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    /* ── FORM ── */
+    .form-container {
+      max-width: 680px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+    }
+
+    .step {
+      display: none;
+      animation: fadeSlide 0.4s ease;
+    }
+    .step.active { display: block; }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .q-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(26,26,46,0.06);
+      position: relative;
+    }
+    .q-card::before {
+      content: attr(data-num);
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-family: 'Noto Serif KR', serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--paper);
+      line-height: 1;
+      user-select: none;
+    }
+
+    .q-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .q-num {
+      background: var(--accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 12px;
+      letter-spacing: 1px;
+    }
+    .q-required {
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    .q-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      color: var(--ink);
+    }
+
+    /* text / textarea */
+    .field-input {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--paper);
+      transition: border-color 0.2s;
+      resize: none;
+    }
+    .field-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: var(--white);
+    }
+    textarea.field-input { min-height: 110px; }
+
+    /* radio / checkbox */
+    .options { display: flex; flex-direction: column; gap: 12px; }
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--paper);
+    }
+    .option-item:hover { border-color: var(--accent); background: #fdf9f5; }
+    .option-item input[type="radio"],
+    .option-item input[type="checkbox"] { display: none; }
+    .custom-dot {
+      width: 20px; height: 20px;
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .option-item.selected .custom-dot {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+    .option-item.selected .custom-dot::after {
+      content: '';
+      width: 8px; height: 8px;
+      background: white;
+      border-radius: 50%;
+    }
+    .custom-check {
+      width: 20px; height: 20px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .option-item.selected .custom-check {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+    .option-item.selected .custom-check::after {
+      content: '✓';
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .option-label { font-size: 15px; }
+    .option-item.selected { border-color: var(--accent); background: #fff8f7; }
+
+    /* rating */
+    .rating-wrap { display: flex; gap: 10px; flex-wrap: wrap; }
+    .rating-btn {
+      width: 46px; height: 46px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: var(--paper);
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.18s;
+      color: var(--ink);
+    }
+    .rating-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .rating-btn.selected {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    .rating-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── SCHEDULE ── */
+    .schedule-wrap {
+      background: var(--paper);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 20px 0 24px;
+      text-align: left;
+    }
+    .schedule-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .schedule-item {
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+      align-items: flex-start;
+    }
+    .schedule-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .schedule-day {
+      background: var(--accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .schedule-day.last { background: var(--ink); }
+    .schedule-info { flex: 1; }
+    .schedule-date {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .schedule-route {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .schedule-route strong { color: var(--ink); font-weight: 500; }
+
+    /* ── NOTICE BOX ── */
+    .notice-box {
+      background: #fff8e6;
+      border: 1.5px solid var(--gold);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: #7a6010;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .notice-box strong { color: var(--accent); }
+
+    /* ── TWO COL ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 480px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ── FIELD GROUP ── */
+    .field-group {
+      margin-bottom: 20px;
+    }
+    .field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .field-hint {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .req { color: var(--accent); }
+
+    /* ── NAV BUTTONS ── */
+    .nav-btns {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn {
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--muted);
+    }
+    .btn-outline:hover { border-color: var(--ink); color: var(--ink); }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      flex: 1;
+      max-width: 280px;
+    }
+    .btn-primary:hover { background: #a93226; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(192,57,43,0.3); }
+    .btn-primary:disabled { background: var(--border); cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* ── STEP INTRO / OUTRO ── */
+    .intro-card, .outro-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 40px;
+      text-align: center;
+      box-shadow: 0 2px 20px rgba(26,26,46,0.08);
+    }
+    .intro-icon { font-size: 48px; margin-bottom: 24px; }
+    .intro-card h2, .outro-card h2 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .intro-card p, .outro-card p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 24px 0;
+      text-align: left;
+    }
+    .info-item {
+      background: var(--paper);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 13px;
+    }
+    .info-item span { display: block; color: var(--muted); font-size: 11px; margin-bottom: 4px; letter-spacing: 1px; }
+
+    .success-icon { font-size: 64px; margin-bottom: 16px; }
+    .outro-card h2 { color: var(--success); }
+
+    /* ── ERROR ── */
+    .error-msg {
+      color: var(--accent);
+      font-size: 13px;
+      margin-top: 8px;
+      display: none;
+    }
+    .has-error .error-msg { display: block; }
+    .has-error .field-input,
+    .has-error .options { animation: shake 0.3s ease; }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 30px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--ink);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: transform 0.3s ease;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 600px) {
+      header { padding: 20px; }
+      .q-card { padding: 24px; }
+      .intro-card, .outro-card { padding: 32px 24px; }
+      .info-grid { grid-template-columns: 1fr; }
+      .nav-btns { flex-direction: column-reverse; }
+      .btn-primary { max-width: 100%; }
+    }
+
+    /* ── SKIP TOGGLE ── */
+    .skip-toggle {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      margin-bottom: 24px;
+      transition: all 0.2s;
+      background: var(--paper);
+      user-select: none;
+    }
+    .skip-toggle:hover { border-color: var(--gold); background: #fffdf5; }
+    .skip-toggle.active { border-color: var(--gold); background: #fffbea; }
+    .skip-checkbox {
+      width: 22px; height: 22px;
+      border: 2px solid var(--border);
+      border-radius: 5px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .skip-toggle.active .skip-checkbox {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .skip-toggle.active .skip-checkbox::after {
+      content: '✓';
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .skip-text strong {
+      display: block;
+      font-size: 14px;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+    .skip-text span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .skip-toggle.active .skip-text strong { color: #7a6010; }
+
+    #artworkFields {
+      transition: opacity 0.3s;
+    }
+    #artworkFields.hidden {
+      opacity: 0.3;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ── SINGLE PAGE LAYOUT ── */
+    .form-container {
+      max-width: 680px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .section-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 2px 20px rgba(26,26,46,0.08);
+    }
+    .section-icon { font-size: 44px; margin-bottom: 16px; }
+    .section-card h2 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+    .section-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .submit-wrap {
+      text-align: center;
+      padding: 10px 0 20px;
+    }
+    .btn-submit {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 16px 60px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+      max-width: 400px;
+    }
+    .btn-submit:hover { background: #a93226; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(192,57,43,0.3); }
+    .btn-submit:disabled { background: var(--border); cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .outro-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 60px 40px;
+      text-align: center;
+      box-shadow: 0 2px 20px rgba(26,26,46,0.08);
+    }
+    .success-icon { font-size: 64px; margin-bottom: 16px; }
+    .outro-card h2 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--success);
+      margin-bottom: 14px;
+    }
+    .outro-card p { color: var(--muted); font-size: 15px; line-height: 1.8; margin-bottom: 28px; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><small>강원대학교 공예디자인전공</small> <span>샤먼 동문전시 참가자 설문지</span></div>
+</header>
+
+<div class="form-container">
+
+  <!-- 전시 일정 안내 -->
+  <div class="section-card">
+    <div class="section-icon">✈️</div>
+    <h2>강원대학교 공예디자인전공<br>샤먼 동문전시 참가자 설문지</h2>
+    <p>전시 참가자 여러분의 소중한 정보를 수집합니다.<br>아래 일정을 확인하시고 각 항목을 입력해 주세요.</p>
+    <div class="schedule-wrap">
+      <div class="schedule-title">✈ 전시 일정 안내 — 4박 5일</div>
+      <div class="schedule-item">
+        <div class="schedule-day">1일차</div>
+        <div class="schedule-info">
+          <div class="schedule-date">8월 21일 (금) · 출발</div>
+          <div class="schedule-route">인천공항 → 샤먼공항 &nbsp; <strong>10:20</strong> 출발 → <strong>12:30</strong> 도착</div>
+        </div>
+      </div>
+      <div class="schedule-item">
+        <div class="schedule-day last">5일차</div>
+        <div class="schedule-info">
+          <div class="schedule-date">8월 25일 (화) · 귀국</div>
+          <div class="schedule-route">샤먼공항 → 인천공항 &nbsp; <strong>13:40</strong> 출발 → <strong>18:05</strong> 도착</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 항목 1: 기본 인적사항 -->
+  <div class="q-card" data-num="01">
+    <div class="q-label"><span class="q-num">항목 1</span><span class="q-required">* 필수</span></div>
+    <div class="q-title">기본 인적사항</div>
+
+    <div class="field-group">
+      <label class="field-label">이름 (한글) <span class="req">*</span></label>
+      <input class="field-input" type="text" id="f-name-ko" placeholder="홍길동" />
+      <p class="error-msg" id="f-name-ko-err">이름(한글)을 입력해 주세요.</p>
+    </div>
+    <div class="field-group">
+      <label class="field-label">이름 (영문) <span class="req">*</span> <span class="field-hint">여권 기재와 동일하게</span></label>
+      <input class="field-input" type="text" id="f-name-en" placeholder="HONG GILDONG" style="text-transform:uppercase" />
+      <p class="error-msg" id="f-name-en-err">이름(영문)을 입력해 주세요.</p>
+    </div>
+    <div class="field-group">
+      <label class="field-label">휴대전화번호 <span class="req">*</span></label>
+      <input class="field-input" type="tel" id="f-phone" placeholder="010-0000-0000" />
+      <p class="error-msg" id="f-phone-err">휴대전화번호를 입력해 주세요.</p>
+    </div>
+    <div class="field-group">
+      <label class="field-label">이메일 <span class="req">*</span></label>
+      <input class="field-input" type="email" id="f-email" placeholder="example@email.com" />
+      <p class="error-msg" id="f-email-err">이메일을 입력해 주세요.</p>
+    </div>
+    <div class="field-group" style="margin-bottom:0">
+      <label class="field-label">생년월일 <span class="req">*</span></label>
+      <input class="field-input" type="date" id="f-birth" />
+      <p class="error-msg" id="f-birth-err">생년월일을 입력해 주세요.</p>
+    </div>
+  </div>
+
+  <!-- 항목 2: 출품 작품 정보 -->
+  <div class="q-card" data-num="02">
+    <div class="q-label"><span class="q-num">항목 2</span></div>
+    <div class="q-title">출품 작품 정보</div>
+
+    <!-- 건너뛰기 토글 -->
+    <label class="skip-toggle" id="skipToggleLabel" onclick="toggleSkipArtwork()">
+      <div class="skip-checkbox" id="skipCheckbox"></div>
+      <div class="skip-text">
+        <strong>작품 정보를 추후에 알려드리겠습니다 (7월 20일까지)</strong>
+        <span>이 항목을 선택하면 작품 정보 입력을 건너뜁니다.</span>
+      </div>
+    </label>
+
+    <!-- 작품 정보 입력 영역 -->
+    <div id="artworkFields">
+      <div class="field-group">
+        <label class="field-label">작품명 (한글)</label>
+        <input class="field-input" type="text" id="f-title-ko" placeholder="작품명을 한글로 입력해 주세요." />
+      </div>
+      <div class="field-group">
+        <label class="field-label">작품명 (영문)</label>
+        <input class="field-input" type="text" id="f-title-en" placeholder="Title in English" />
+      </div>
+      <div class="field-group">
+        <label class="field-label">소재 / 기법</label>
+        <input class="field-input" type="text" id="f-material" placeholder="예) 도자, 금속, 목공예 / 핸드빌드 등" />
+      </div>
+      <div class="two-col">
+        <div class="field-group">
+          <label class="field-label">크기</label>
+          <input class="field-input" type="text" id="f-size" placeholder="예) 30×20×15 cm" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">중량 (대략)</label>
+          <input class="field-input" type="text" id="f-weight" placeholder="예) 약 2 kg" />
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">작품 설명</label>
+        <textarea class="field-input" id="f-desc" placeholder="작품의 콘셉트, 제작 의도 등을 자유롭게 적어주세요." rows="4"></textarea>
+      </div>
+      <div class="field-group" style="margin-bottom:0">
+        <label class="field-label">전시 공간 요구사항</label>
+        <textarea class="field-input" id="f-space" placeholder="예) 벽면 부착 필요, 받침대 높이 80cm, 스포트라이트 조명 등" rows="3"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- 항목 3: 숙소 희망사항 -->
+  <div class="q-card" data-num="03">
+    <div class="q-label"><span class="q-num">항목 3</span><span class="q-required">* 필수</span></div>
+    <div class="q-title">숙소 희망사항</div>
+    <div class="field-group">
+      <label class="field-label">희망 객실 타입 <span class="req">*</span></label>
+      <div class="options" id="room-type">
+        <label class="option-item" onclick="selectRadio(this,'room-type')">
+          <input type="radio" name="room-type" value="1인실">
+          <div class="custom-dot"></div>
+          <span class="option-label">1인실</span>
+        </label>
+        <label class="option-item" onclick="selectRadio(this,'room-type')">
+          <input type="radio" name="room-type" value="2인실(룸메이트 있음)">
+          <div class="custom-dot"></div>
+          <span class="option-label">2인실 (룸메이트 있음)</span>
+        </label>
+        <label class="option-item" onclick="selectRadio(this,'room-type')">
+          <input type="radio" name="room-type" value="무관(배정에 따름)">
+          <div class="custom-dot"></div>
+          <span class="option-label">무관 (배정에 따름)</span>
+        </label>
+      </div>
+      <p class="error-msg" id="room-type-err">객실 타입을 선택해 주세요.</p>
+    </div>
+    <div class="field-group" style="margin-bottom:0">
+      <label class="field-label">희망 룸메이트 <span class="field-hint">2인 1실 선택 시 작성</span></label>
+      <input class="field-input" type="text" id="f-roommate" placeholder="희망 룸메이트 이름을 입력해 주세요." />
+    </div>
+  </div>
+
+  <!-- 항목 4: 기타 전달 사항 -->
+  <div class="q-card" data-num="04">
+    <div class="q-label"><span class="q-num">항목 4</span></div>
+    <div class="q-title">기타 전달 사항</div>
+    <div class="field-group" style="margin-bottom:0">
+      <label class="field-label">전시 관련 건의사항 또는 문의</label>
+      <textarea class="field-input" id="f-etc" placeholder="전시 준비 과정에서 건의하실 사항이나 문의 내용을 자유롭게 적어주세요." rows="5"></textarea>
+    </div>
+  </div>
+
+  <!-- 제출 버튼 -->
+  <div class="submit-wrap">
+    <button type="button" class="btn-submit" id="submitBtn" onclick="submitSurvey()">제출하기 ✓</button>
+  </div>
+
+  <!-- 완료 메시지 -->
+  <div class="outro-card" id="outroCard" style="display:none">
+    <div class="success-icon">🎉</div>
+    <h2>제출 완료!</h2>
+    <p>소중한 시간을 내어 참여해 주셔서 진심으로 감사드립니다.<br>입력하신 내용은 전시 준비에 소중히 활용됩니다.</p>
+    <button type="button" class="btn-submit" onclick="resetSurvey()">처음으로 돌아가기</button>
+  </div>
+
+</div><!-- /form-container -->
+
+<div class="toast" id="toast"></div>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey:            "AIzaSyC3s_YL-I4zNJKHoH-Jaewox_3NcNaZ0xU",
+    authDomain:        "tiajsehdanswjstl-1c66e.firebaseapp.com",
+    projectId:         "tiajsehdanswjstl-1c66e",
+    storageBucket:     "tiajsehdanswjstl-1c66e.firebasestorage.app",
+    messagingSenderId: "325768504049",
+    appId:             "1:325768504049:web:aeafd799615c624cd27f50"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db  = getFirestore(app);
+
+  window._submitToFirebase = async (data) => {
+    await addDoc(collection(db, "responses"), {
+      ...data,
+      submittedAt: serverTimestamp()
+    });
+  };
+</script>
+
+<script>
+  let artworkSkipped = false;
+
+  function toggleSkipArtwork() {
+    artworkSkipped = !artworkSkipped;
+    const label = document.getElementById('skipToggleLabel');
+    const fields = document.getElementById('artworkFields');
+    if (artworkSkipped) {
+      label.classList.add('active');
+      fields.classList.add('hidden');
+    } else {
+      label.classList.remove('active');
+      fields.classList.remove('hidden');
+    }
+  }
+
+  function selectRadio(label, group) {
+    document.querySelectorAll('#' + group + ' .option-item').forEach(l => l.classList.remove('selected'));
+    label.classList.add('selected');
+  }
+
+  function validate() {
+    document.querySelectorAll('.error-msg').forEach(e => e.style.display = 'none');
+    let ok = true;
+    let firstErr = null;
+
+    function check(id, errId) {
+      const el = document.getElementById(id);
+      if (!el || !el.value.trim()) {
+        document.getElementById(errId).style.display = 'block';
+        if (!firstErr) firstErr = document.getElementById(errId);
+        ok = false;
+      }
+    }
+
+    check('f-name-ko', 'f-name-ko-err');
+    check('f-name-en', 'f-name-en-err');
+    check('f-phone',   'f-phone-err');
+    check('f-email',   'f-email-err');
+    check('f-birth',   'f-birth-err');
+
+    if (!document.querySelector('input[name="room-type"]:checked')) {
+      document.getElementById('room-type-err').style.display = 'block';
+      if (!firstErr) firstErr = document.getElementById('room-type-err');
+      ok = false;
+    }
+
+    if (!ok && firstErr) {
+      firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return ok;
+  }
+
+  async function submitSurvey() {
+    if (!validate()) return;
+
+    const answers = {
+      nameKo:   document.getElementById('f-name-ko').value.trim(),
+      nameEn:   document.getElementById('f-name-en').value.trim().toUpperCase(),
+      phone:    document.getElementById('f-phone').value.trim(),
+      email:    document.getElementById('f-email').value.trim(),
+      birth:    document.getElementById('f-birth').value.trim(),
+      titleKo:  artworkSkipped ? '추후 제출' : document.getElementById('f-title-ko').value.trim(),
+      titleEn:  artworkSkipped ? '추후 제출' : document.getElementById('f-title-en').value.trim(),
+      material: artworkSkipped ? '추후 제출' : document.getElementById('f-material').value.trim(),
+      size:     artworkSkipped ? '추후 제출' : document.getElementById('f-size').value.trim(),
+      weight:   artworkSkipped ? '추후 제출' : document.getElementById('f-weight').value.trim(),
+      desc:     artworkSkipped ? '추후 제출' : document.getElementById('f-desc').value.trim(),
+      space:    artworkSkipped ? '추후 제출' : document.getElementById('f-space').value.trim(),
+      roomType: document.querySelector('input[name="room-type"]:checked')?.value || '',
+      roommate: document.getElementById('f-roommate').value.trim(),
+      etc:      document.getElementById('f-etc').value.trim(),
+    };
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = '제출 중...';
+
+    try {
+      if (window._submitToFirebase) await window._submitToFirebase(answers);
+      document.querySelectorAll('.q-card, .submit-wrap').forEach(el => el.style.display = 'none');
+      document.querySelector('.section-card').style.display = 'none';
+      document.getElementById('outroCard').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch(e) {
+      console.error(e);
+      btn.disabled = false;
+      btn.textContent = '제출하기 ✓';
+      showToast('⚠️ 제출 중 오류가 발생했습니다. 다시 시도해 주세요.');
+    }
+  }
+
+  function resetSurvey() {
+    artworkSkipped = false;
+    document.getElementById('skipToggleLabel').classList.remove('active');
+    document.getElementById('artworkFields').classList.remove('hidden');
+    document.querySelectorAll('.field-input').forEach(i => i.value = '');
+    document.querySelectorAll('.option-item').forEach(i => i.classList.remove('selected'));
+    document.querySelectorAll('input[type="radio"]').forEach(i => i.checked = false);
+    document.querySelectorAll('.q-card, .submit-wrap').forEach(el => el.style.display = '');
+    document.querySelector('.section-card').style.display = '';
+    document.getElementById('outroCard').style.display = 'none';
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('submitBtn').textContent = '제출하기 ✓';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+</script>
+</body>
+</html>
